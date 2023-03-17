@@ -1,11 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/core/constants.dart';
-import 'package:netflix/presentation/fast_laugh/screen_fast_laugh.dart';
+import 'package:netflix/presentation/search/widgets/title.dart';
 
 import '../../../core/colors.dart';
 
 const imageUrl =
     'https://tv-fanatic-res.cloudinary.com/iu/s--JqnWsvbZ--/t_full/cs_srgb,f_auto,fl_strip_profile.lossy,q_auto:420/v1594246308/greyhound-poster-horizontal.png';
+
+class SearchIdle extends StatelessWidget {
+  const SearchIdle({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SearchTextTitle(title: 'Top Searches',),
+        kHeight,
+        //const TopSearcheItemTile(),
+
+        //! takes max size
+        Expanded(
+          child: ListView.separated(
+            shrinkWrap: true,
+            itemBuilder: (ctx, index) => const TopSearcheItemTile(),
+            separatorBuilder: (ctx, index) => kLVSHeight,
+            itemCount: 10,
+          ),
+        ),
+      ],
+    );
+  }
+}
 
 
 
