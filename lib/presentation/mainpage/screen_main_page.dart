@@ -4,7 +4,7 @@ import 'package:netflix/presentation/fast_laugh/screen_fast_laugh.dart';
 import 'package:netflix/presentation/home/screen_home.dart';
 import 'package:netflix/presentation/mainpage/widgets/bottom_navigation.dart';
 import 'package:netflix/presentation/new_and_hot/screen_new_and_hot.dart';
-import 'package:netflix/presentation/search/search.dart';
+import 'package:netflix/presentation/search/screeen_search.dart';
 
 // import '../../core/colors.dart';
 
