@@ -16,7 +16,7 @@ class SearchIdle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SearchTextTitle(title: 'Top Searches',),
-        kHeight,
+        kLVSHeight,
         //const TopSearcheItemTile(),
 
         //! takes max size

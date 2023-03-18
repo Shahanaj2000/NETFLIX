@@ -23,12 +23,9 @@ class ScreenSearch extends StatelessWidget {
                 suffixIcon: const Icon(CupertinoIcons.xmark_circle_fill, color: Colors.grey,),
                 style: const TextStyle(color: Colors.white),
               ),
-              kHeight,
+              kGVCHeight,
               //const Expanded(child: SearchIdle(),),
               const Expanded(child: SearchResultWidget(),),
-
-              
-              
             ],
           ),
         ),
