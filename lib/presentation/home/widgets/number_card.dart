@@ -18,13 +18,13 @@ class NumberCard extends StatelessWidget {
           children: [
             const SizedBox(
               width: 40,
-              height: 150,
+              height: 200,
             ),
             Container(
-              height: 250,
+              height: 200,
               width: 130,
               decoration: BoxDecoration(
-                borderRadius: kRadis15,
+                borderRadius: kRadis10,
                 image: const DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
@@ -37,16 +37,17 @@ class NumberCard extends StatelessWidget {
         ),
         Positioned(
             left: 13,
-            bottom: 0,
+            bottom: -20,
             child: BorderedText(
-              strokeColor: Colors.black,
+              strokeColor: Colors.white,
               strokeWidth: 10.0,
               child: Text(
                 '${index + 1}',
                 style: const TextStyle(
+                  color: Colors.black,
                   decoration: TextDecoration.none,
                   decorationColor: Colors.black,
-                  fontSize: 120,
+                  fontSize: 140,
                   fontWeight: FontWeight.bold,
                 ),
               ),
