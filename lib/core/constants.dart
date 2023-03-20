@@ -9,6 +9,7 @@ const kGVCWidth = SizedBox(width: 20,);
 const kHPHeight = SizedBox(height: 20,);
 //BorderRadis
 final BorderRadius kRadis10 = BorderRadius.circular(10);
+final BorderRadius kRadis30 = BorderRadius.circular(30);
 
 //MainBackgroundImage
 const mainBackgroundImage = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/uKvVjHNqB5VmOrdxqAt2F7J78ED.jpg";
