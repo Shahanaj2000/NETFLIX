@@ -12,3 +12,7 @@ final BorderRadius kRadis10 = BorderRadius.circular(10);
 
 //MainBackgroundImage
 const mainBackgroundImage = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/uKvVjHNqB5VmOrdxqAt2F7J78ED.jpg";
+
+
+//TextStyle
+TextStyle kHomeTitleText = const TextStyle(fontSize: 14, fontWeight: FontWeight.bold,);
