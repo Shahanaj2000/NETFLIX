@@ -17,3 +17,6 @@ const mainBackgroundImage = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2
 
 //TextStyle
 TextStyle kHomeTitleText = const TextStyle(fontSize: 14, fontWeight: FontWeight.bold,);
+
+//New&Hot Temp image
+const newAndHotTempImage = 'https://www.themoviedb.org/t/p/w533_and_h300_bestv2/bQTfSXQrcVwXJ5TvNzbd3ioMnnM.jpg';
