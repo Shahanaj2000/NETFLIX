@@ -1,10 +1,10 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:netflix/core/colors.dart';
 import 'package:netflix/core/constants.dart';
 import 'package:netflix/presentation/home/widgets/custom_button_widget.dart';
 import 'package:netflix/presentation/new_and_hot/widgets/coming_soon_widget.dart';
+import 'package:netflix/presentation/new_and_hot/widgets/everyones_watching.dart';
+import 'package:netflix/presentation/widgets/video_widget.dart';
 
 class ScreenNewAndHot extends StatelessWidget {
   const ScreenNewAndHot({super.key});
@@ -45,34 +45,26 @@ class ScreenNewAndHot extends StatelessWidget {
               indicator:
                   BoxDecoration(color: kWhiteColor, borderRadius: kRadis30),
               tabs: const [
-
                 Tab(
                   text: 'Comming Soon',
-                 
                 ),
                 Tab(
                   text: "Everyone's Watching",
                 ),
-                
               ],
             ),
-            
           ),
         ),
-        
         body: TabBarView(
           children: [
             _buildComingSoon(),
             _buildEveryonesWatching(),
-            
           ],
-          
         ),
-        
       ),
-      
     );
   }
+
   //! ComingSoon Widget
   Widget _buildComingSoon() {
     return ListView.separated(
@@ -85,10 +77,17 @@ class ScreenNewAndHot extends StatelessWidget {
       itemCount: 10,
     );
   }
+
   //! Everyone's Watching
   Widget _buildEveryonesWatching() {
-    return const SizedBox();
+    return ListView.separated(
+      itemBuilder: (context, index) {
+        return const EveryonesWatching();
+      },
+      separatorBuilder: (context, index) {
+        return kHeight;
+      },
+      itemCount: 10,
+    );
   }
 }
-
-

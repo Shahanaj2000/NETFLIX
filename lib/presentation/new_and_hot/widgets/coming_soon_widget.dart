@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:netflix/core/colors.dart';
 import 'package:netflix/core/constants.dart';
 import 'package:netflix/presentation/home/widgets/custom_button_widget.dart';
+import 'package:netflix/presentation/widgets/video_widget.dart';
 
 class ComingSoonWidget extends StatelessWidget {
   const ComingSoonWidget({
@@ -16,7 +17,7 @@ class ComingSoonWidget extends StatelessWidget {
       children: [
         SizedBox(
           width: 50,
-          height: 430,
+          height: 450,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: const [
@@ -39,40 +40,12 @@ class ComingSoonWidget extends StatelessWidget {
         ),
         SizedBox(
           width: size.width - 50,
-          height: 430,
+          height: 450,
           //color: Colors.red,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    height: 200,
-                    child: Image.network(
-                      newAndHotTempImage,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  //! MuteIcon
-                  Positioned(
-                    bottom: 10,
-                    right: 10,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.black.withOpacity(0.5),
-                      radius: 22,
-                      child: IconButton(
-                        //color: Colors.black,
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.volume_off_sharp,
-                          size: 20,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              const VideoWidget(),
               kGVCHeight,
               //!
               Row(
@@ -121,7 +94,9 @@ class ComingSoonWidget extends StatelessWidget {
                   fontWeight: FontWeight.w200,
                   color: kGreyColor,
                 ),
-              )
+              ),
+              kHeight,
+              
             ],
           ),
         ),
@@ -129,3 +104,4 @@ class ComingSoonWidget extends StatelessWidget {
     );
   }
 }
+

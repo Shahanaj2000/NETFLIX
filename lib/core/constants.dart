@@ -7,6 +7,7 @@ const kLVSWidth = SizedBox(width: 20,);
 const kGVCHeight = SizedBox(height: 20,);
 const kGVCWidth = SizedBox(width: 20,);
 const kHPHeight = SizedBox(height: 20,);
+const kNewHot = SizedBox(height: 50,);
 //BorderRadis
 final BorderRadius kRadis10 = BorderRadius.circular(10);
 final BorderRadius kRadis30 = BorderRadius.circular(30);
