@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:netflix/domain/core/Failures/main_failure.dart';
 import 'package:netflix/domain/downloads/i_downloads_repo.dart';
 import 'package:netflix/domain/downloads/models/downloads.dart';
@@ -11,6 +14,8 @@ part 'downloads_state.dart';
 
 part 'downloads_bloc.freezed.dart';
 
+
+@injectable
 class DownloadsBloc extends Bloc<DownloadsEvent, DownloadState> {
   //Obj for IDownloadRepo
   final IDownloadsRepo _downloadsRepo;
@@ -27,6 +32,9 @@ class DownloadsBloc extends Bloc<DownloadsEvent, DownloadState> {
       //API call (Future Calling)
       final Either<MainFailure, List<Downloads>> downloadsOption =
           await _downloadsRepo.getDownloadImages();
+
+      print(downloadsOption.toString());   
+      
       //Folding API Calls
       emit(
         downloadsOption.fold(
