@@ -21,3 +21,5 @@ TextStyle kHomeTitleText = const TextStyle(fontSize: 14, fontWeight: FontWeight.
 
 //New&Hot Temp image
 const newAndHotTempImage = 'https://www.themoviedb.org/t/p/w533_and_h300_bestv2/bQTfSXQrcVwXJ5TvNzbd3ioMnnM.jpg';
+
+const imageAppendUrl = 'https://image.tmdb.org/t/p/w500';

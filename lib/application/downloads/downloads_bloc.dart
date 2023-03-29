@@ -39,7 +39,7 @@ class DownloadsBloc extends Bloc<DownloadsEvent, DownloadState> {
       emit(
         downloadsOption.fold(
           (failure) => state.copyWith(
-            isLoading: false,
+            isLoading: true,
             downloadsFailuresOrSuccessOption: some(Left(failure),),
           ),
           (success) => state.copyWith(
