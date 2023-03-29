@@ -26,14 +26,11 @@ class VideoListItem extends StatelessWidget {
               children: [
                 //left side
                 CircleAvatar(
-
                   backgroundColor: Colors.black.withOpacity(0.5),
                   radius: 30,
                   child: IconButton(
                     //color: Colors.black,
-                    onPressed: () {
-                      
-                    },
+                    onPressed: () {},
                     icon: const Icon(
                       Icons.volume_off_sharp,
                     ),
@@ -47,7 +44,8 @@ class VideoListItem extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       child: CircleAvatar(
-                        backgroundImage: NetworkImage('https://upload.wikimedia.org/wikipedia/commons/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg'),
+                        backgroundImage: NetworkImage(
+                            'https://upload.wikimedia.org/wikipedia/commons/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg'),
                         radius: 30,
                       ),
                     ),
@@ -68,7 +66,6 @@ class VideoListItem extends StatelessWidget {
 
 //!  Icon Actions
 class VideoActionIcon extends StatelessWidget {
-
   final IconData icon;
   final String title;
   const VideoActionIcon({super.key, required this.icon, required this.title});
@@ -79,8 +76,16 @@ class VideoActionIcon extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          Icon(icon, color: kWhiteColor, size: 30,),
-          Text(title, style: const TextStyle(fontSize: 16, color: kWhiteColor, fontWeight: FontWeight.w200),),
+          Icon(
+            icon,
+            color: kWhiteColor,
+            size: 30,
+          ),
+          Text(
+            title,
+            style: const TextStyle(
+                fontSize: 16, color: kWhiteColor, fontWeight: FontWeight.w200),
+          ),
         ],
       ),
     );

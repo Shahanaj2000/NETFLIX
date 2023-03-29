@@ -36,22 +36,23 @@ class NumberCard extends StatelessWidget {
           ],
         ),
         Positioned(
-            left: 13,
-            bottom: -20,
-            child: BorderedText(
-              strokeColor: Colors.white,
-              strokeWidth: 10.0,
-              child: Text(
-                '${index + 1}',
-                style: const TextStyle(
-                  color: Colors.black,
-                  decoration: TextDecoration.none,
-                  decorationColor: Colors.black,
-                  fontSize: 140,
-                  fontWeight: FontWeight.bold,
-                ),
+          left: 13,
+          bottom: -20,
+          child: BorderedText(
+            strokeColor: Colors.white,
+            strokeWidth: 10.0,
+            child: Text(
+              '${index + 1}',
+              style: const TextStyle(
+                color: Colors.black,
+                decoration: TextDecoration.none,
+                decorationColor: Colors.black,
+                fontSize: 140,
+                fontWeight: FontWeight.bold,
               ),
-            ),),
+            ),
+          ),
+        ),
       ],
     );
   }

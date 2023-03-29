@@ -15,7 +15,9 @@ class SearchIdle extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SearchTextTitle(title: 'Top Searches',),
+        const SearchTextTitle(
+          title: 'Top Searches',
+        ),
         kLVSHeight,
         //const TopSearcheItemTile(),
 
@@ -32,8 +34,6 @@ class SearchIdle extends StatelessWidget {
     );
   }
 }
-
-
 
 class TopSearcheItemTile extends StatelessWidget {
   const TopSearcheItemTile({super.key});
@@ -67,21 +67,22 @@ class TopSearcheItemTile extends StatelessWidget {
 
         //! Play Button or Icon
         //const Icon(Icons.play_circle_filled, color: kWhiteColor, size: 50,) white -> black we want black white
-         InkWell(
-          onTap: () {
-            
-          },
+        InkWell(
+          onTap: () {},
           child: const CircleAvatar(
             backgroundColor: kWhiteColor,
             radius: 27,
             child: CircleAvatar(
               backgroundColor: kBlackColor,
               radius: 25,
-              child: Icon(Icons.play_circle_fill, color: kWhiteColor, size: 25,),
+              child: Icon(
+                Icons.play_circle_fill,
+                color: kWhiteColor,
+                size: 25,
+              ),
             ),
           ),
         )
-
       ],
     );
   }

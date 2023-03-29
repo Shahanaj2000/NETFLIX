@@ -9,9 +9,9 @@ import 'package:netflix/presentation/search/screeen_search.dart';
 // import '../../core/colors.dart';
 
 class ScreenMainPage extends StatelessWidget {
-   ScreenMainPage({super.key});
+  ScreenMainPage({super.key});
 
-  final _pages =  [
+  final _pages = [
     ScreenHome(),
     ScreenNewAndHot(),
     ScreenFastLaugh(),
@@ -21,11 +21,14 @@ class ScreenMainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: SafeArea(
-        child: ValueListenableBuilder(valueListenable: indexChangeNotifier, builder: (context, int index, _) {
-          return _pages[index];
-        },),
+        child: ValueListenableBuilder(
+          valueListenable: indexChangeNotifier,
+          builder: (context, int index, _) {
+            return _pages[index];
+          },
+        ),
       ),
       bottomNavigationBar: const BottomNavigationWidget(),
     );

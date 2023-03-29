@@ -7,7 +7,7 @@ import 'package:netflix/presentation/mainpage/screen_main_page.dart';
 
 import 'core/colors.dart';
 
-Future <void> main() async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureInjection();
   runApp(const MyApp());
@@ -21,7 +21,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (ctx) => getIt<DownloadsBloc>(),),
+        BlocProvider(
+          create: (ctx) => getIt<DownloadsBloc>(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -37,10 +39,8 @@ class MyApp extends StatelessWidget {
           ),
           primarySwatch: Colors.blue,
         ),
-        home:  ScreenMainPage(),
+        home: ScreenMainPage(),
       ),
     );
   }
 }
-
-

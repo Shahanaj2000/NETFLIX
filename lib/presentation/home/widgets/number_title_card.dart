@@ -26,7 +26,9 @@ class NumberTitleCard extends StatelessWidget {
             children: List.generate(
               10,
               (index) {
-                return  NumberCard(index: index,);
+                return NumberCard(
+                  index: index,
+                );
               },
             ),
           ),

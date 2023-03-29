@@ -59,7 +59,6 @@ TextButton _playButton() {
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: Text(
         'Play',
-        
         style: TextStyle(
           color: kBlackColor,
           fontSize: 23,

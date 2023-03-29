@@ -6,8 +6,6 @@ import 'package:netflix/core/colors.dart';
 import 'package:netflix/core/constants.dart';
 import 'package:netflix/presentation/widgets/app_bar_widget.dart';
 
-
-
 class ScreenDownloads extends StatelessWidget {
   ScreenDownloads({super.key});
 
@@ -89,39 +87,41 @@ class Section2 extends StatelessWidget {
             return SizedBox(
               width: size.width,
               height: size.width,
-              child: state.isLoading ? const Center( child: CircularProgressIndicator()) : Stack(
-                alignment: Alignment.center,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.grey.withOpacity(0.5),
-                    radius: size.width * 0.4,
-                  ),
-                  //! To Display images in stack CA
-                  DownloadImageWidget(
-                    margin: const EdgeInsets.only(left: 130, bottom: 50),
-                    imageList: '$imageAppendUrl${state.downloads![0].posterPath}',
-                    
-                    angle: 20,
-                    size: Size(size.width * 0.4, size.height * 0.58),
-                  ),
-                  
-                  
+              child: state.isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.grey.withOpacity(0.5),
+                          radius: size.width * 0.4,
+                        ),
+                        //! To Display images in stack CA
+                        DownloadImageWidget(
+                          margin: const EdgeInsets.only(left: 130, bottom: 50),
+                          imageList:
+                              '$imageAppendUrl${state.downloads[0].posterPath}',
+                          angle: 20,
+                          size: Size(size.width * 0.4, size.height * 0.58),
+                        ),
 
-                  DownloadImageWidget(
-                    margin: const EdgeInsets.only(right: 130, bottom: 50),
-                    imageList: '$imageAppendUrl${state.downloads![1].posterPath}',
-                    angle: -20,
-                    size: Size(size.width * 0.4, size.height * 0.58),
-                  ),
+                        DownloadImageWidget(
+                          margin: const EdgeInsets.only(right: 130, bottom: 50),
+                          imageList:
+                              '$imageAppendUrl${state.downloads[1].posterPath}',
+                          angle: -20,
+                          size: Size(size.width * 0.4, size.height * 0.58),
+                        ),
 
-                  DownloadImageWidget(
-                    margin: const EdgeInsets.only(bottom: 14),
-                    imageList: '$imageAppendUrl${state.downloads![2].posterPath}',
-                    size: Size(size.width * 0.45, size.height * 0.65),
-                    radius: 8,
-                  ),
-                ],
-              ),
+                        DownloadImageWidget(
+                          margin: const EdgeInsets.only(bottom: 14),
+                          imageList:
+                              '$imageAppendUrl${state.downloads[2].posterPath}',
+                          size: Size(size.width * 0.45, size.height * 0.65),
+                          radius: 8,
+                        ),
+                      ],
+                    ),
             );
           },
         ),

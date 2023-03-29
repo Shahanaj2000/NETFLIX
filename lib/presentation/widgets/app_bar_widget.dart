@@ -6,7 +6,7 @@ import '../../core/constants.dart';
 class AppBarWidget extends StatelessWidget {
   const AppBarWidget({super.key, required this.title});
 
-  //! This for Download Text 
+  //! This for Download Text
   final String title;
 
   @override

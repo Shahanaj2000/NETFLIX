@@ -96,7 +96,6 @@ class ComingSoonWidget extends StatelessWidget {
                 ),
               ),
               kHeight,
-              
             ],
           ),
         ),
@@ -104,4 +103,3 @@ class ComingSoonWidget extends StatelessWidget {
     );
   }
 }
-

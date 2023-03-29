@@ -16,7 +16,7 @@ class MainTitleCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       //mainAxisAlignment: MainAxisAlignment.start,
       children: [
-         MainTitle(
+        MainTitle(
           title: title,
         ),
         kHeight,
