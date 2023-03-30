@@ -19,16 +19,17 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   SearchBloc(this._downloadsSevices, this._serchServices,) : super(SearchState.initial()) {
     //IDLE Search state
-    on<SearchEvent>((event, emit) {
+    on<Initialize>((event, emit) {
      //! get trending
       _downloadsSevices.getDownloadImages();
      //! show to UI
     });
 
     //Movie Search state
-    on<SearchEvent>((event, emit) {
+    on<SearchMovie>((event, emit) {
      //! call search movie api
-      _serchServices.searchMovies(movieQuery: movieQuery);
+      
+      //_serchServices.searchMovies(movieQuery: movieQuery);
      //! show to UI
     });
   }
