@@ -21,8 +21,8 @@ Downloads _$DownloadsFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Downloads {
 //! API name poster_path we want to chage that
-  @JsonKey(name: "poster_path")
-  String? get posterPath => throw _privateConstructorUsedError;
+  @JsonKey(name: 'poster_path')
+  String get posterPath => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $DownloadsCopyWith<$Res> {
   factory $DownloadsCopyWith(Downloads value, $Res Function(Downloads) then) =
       _$DownloadsCopyWithImpl<$Res, Downloads>;
   @useResult
-  $Res call({@JsonKey(name: "poster_path") String? posterPath});
+  $Res call({@JsonKey(name: 'poster_path') String posterPath});
 }
 
 /// @nodoc
@@ -51,13 +51,13 @@ class _$DownloadsCopyWithImpl<$Res, $Val extends Downloads>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? posterPath = freezed,
+    Object? posterPath = null,
   }) {
     return _then(_value.copyWith(
-      posterPath: freezed == posterPath
+      posterPath: null == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ) as $Val);
   }
 }
@@ -69,7 +69,7 @@ abstract class _$$_DownloadsCopyWith<$Res> implements $DownloadsCopyWith<$Res> {
       __$$_DownloadsCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@JsonKey(name: "poster_path") String? posterPath});
+  $Res call({@JsonKey(name: 'poster_path') String posterPath});
 }
 
 /// @nodoc
@@ -83,13 +83,13 @@ class __$$_DownloadsCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? posterPath = freezed,
+    Object? posterPath = null,
   }) {
     return _then(_$_Downloads(
-      posterPath: freezed == posterPath
+      posterPath: null == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -97,15 +97,15 @@ class __$$_DownloadsCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Downloads implements _Downloads {
-  const _$_Downloads({@JsonKey(name: "poster_path") required this.posterPath});
+  const _$_Downloads({@JsonKey(name: 'poster_path') required this.posterPath});
 
   factory _$_Downloads.fromJson(Map<String, dynamic> json) =>
       _$$_DownloadsFromJson(json);
 
 //! API name poster_path we want to chage that
   @override
-  @JsonKey(name: "poster_path")
-  final String? posterPath;
+  @JsonKey(name: 'poster_path')
+  final String posterPath;
 
   @override
   String toString() {
@@ -141,15 +141,15 @@ class _$_Downloads implements _Downloads {
 
 abstract class _Downloads implements Downloads {
   const factory _Downloads(
-          {@JsonKey(name: "poster_path") required final String? posterPath}) =
+          {@JsonKey(name: 'poster_path') required final String posterPath}) =
       _$_Downloads;
 
   factory _Downloads.fromJson(Map<String, dynamic> json) =
       _$_Downloads.fromJson;
 
   @override //! API name poster_path we want to chage that
-  @JsonKey(name: "poster_path")
-  String? get posterPath;
+  @JsonKey(name: 'poster_path')
+  String get posterPath;
   @override
   @JsonKey(ignore: true)
   _$$_DownloadsCopyWith<_$_Downloads> get copyWith =>
