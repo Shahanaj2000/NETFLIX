@@ -19,11 +19,12 @@ class DownloadsRepository implements IDownloadsRepo {
           .get(ApiEndPoints.downloads); //-> Url (Apicall)
       //checking statusCode
       if (response.statusCode == 200 || response.statusCode == 201) {
-        //log(response.data);
+        //print("Response: ");
+        //print(response.data);
         final downloadList = (response.data['results'] as List).map((e) {
           return Downloads.fromJson(e as Map<String, dynamic>);
         }).toList();
-        
+
         print('DownLoadList: ');
         log(downloadList.toString());
 
