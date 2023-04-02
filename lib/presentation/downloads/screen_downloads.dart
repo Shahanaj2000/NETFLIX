@@ -13,7 +13,7 @@ class ScreenDownloads extends StatelessWidget {
   final _widgetList = [
     kHeight,
     const _smartDownloads(),
-    Section2(),
+    const Section2(),
     const Section3(),
   ];
 
@@ -40,13 +40,9 @@ class ScreenDownloads extends StatelessWidget {
 
 //! section2 -> Aim is to use spacing b/w both
 class Section2 extends StatelessWidget {
-  Section2({super.key});
+  const Section2({super.key});
 
-  // final List imageList = [
-  //   "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/kuf6dutpsT0vSVehic3EZIqkOBt.jpg",
-  //   "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/qi9r5xBgcc9KTxlOLjssEbDgO0J.jpg",
-  //   "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg",
-  // ];
+  
 
   @override
   Widget build(BuildContext context) {
