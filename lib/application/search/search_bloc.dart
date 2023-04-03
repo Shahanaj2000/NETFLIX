@@ -86,7 +86,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         ),
       );
       // ignore: no_leading_underscores_for_local_identifiers
-      final _result = await _serchServices.searchMovies(movieQuery: moveQuery);
+      final _result = await _serchServices.searchMovies(movieQuery: 'moveQuery');
       final _state = _result.fold(
         (MainFailure f) {
           return const SearchState(
@@ -112,4 +112,4 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   }
 
   //get moveQuery => null;
-}
+} 
