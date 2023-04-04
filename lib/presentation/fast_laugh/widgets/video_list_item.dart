@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:netflix/application/fast_laugh/fast_laugh_bloc.dart';
 import 'package:netflix/core/colors.dart';
 import 'package:netflix/core/constants.dart';
 import 'package:netflix/domain/downloads/models/downloads.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:video_player/video_player.dart';
 
 //! Inherited widget
@@ -87,10 +90,32 @@ class VideoListItem extends StatelessWidget {
                         radius: 30,
                       ),
                     ),
-                    VideoActionIcon(icon: Icons.emoji_emotions, title: 'LOL'),
-                    VideoActionIcon(icon: Icons.add, title: 'My List'),
-                    VideoActionIcon(icon: Icons.share, title: 'Share'),
-                    VideoActionIcon(icon: Icons.play_arrow, title: 'Play'),
+                    VideoActionIcon(
+                      icon: Icons.emoji_emotions,
+                      title: 'LOL',
+                    ),
+                    VideoActionIcon(
+                      icon: Icons.add,
+                      title: 'My List',
+                    ),
+                    InkWell(
+                      onTap:  () {
+                        log('Share Clicked!');
+                        final movieName = VideoListItemInheritedWidget.of(context)?.movieData.posterPath;
+                        log(movieName.toString());
+                        if (movieName != null) {
+                          Share.share(movieName);
+                        }
+                      },
+                      child: VideoActionIcon(
+                        icon: Icons.share,
+                        title: 'Share',
+                      ),
+                    ),
+                    VideoActionIcon(
+                      icon: Icons.play_arrow,
+                      title: 'Play',
+                    ),
                   ],
                 ),
               ],
@@ -165,9 +190,9 @@ class _FastLaughVideoPlayerState extends State<FastLaughVideoPlayer> {
       width: double.infinity,
       child: _videoPlayerController.value.isInitialized
           ? AspectRatio(
-                  aspectRatio: _videoPlayerController.value.aspectRatio,
-                  child: VideoPlayer(_videoPlayerController),
-                )
+              aspectRatio: _videoPlayerController.value.aspectRatio,
+              child: VideoPlayer(_videoPlayerController),
+            )
           : const Center(
               child: CircularProgressIndicator(
                 strokeWidth: 2,
