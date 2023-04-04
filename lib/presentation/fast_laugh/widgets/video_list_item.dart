@@ -1,5 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/core/colors.dart';
+import 'package:netflix/core/constants.dart';
+import 'package:netflix/domain/downloads/models/downloads.dart';
+
+//! Inherited widget
+class VideoListItemInheritedWidget extends InheritedWidget {
+  //! this is req
+  final Widget widget;
+  //! Which data we use
+  final Downloads movieData;
+
+  const VideoListItemInheritedWidget({
+    Key? key,
+    required this.widget,
+    required this.movieData,
+  }) : super(child: widget);
+  //! How we can update - in case is the change comes
+  @override
+  bool updateShouldNotify(covariant VideoListItemInheritedWidget oldWidget) {
+    return oldWidget.movieData != movieData;
+  }
+
+  //!
+  static VideoListItemInheritedWidget? of(BuildContext context) {
+    return context
+        .dependOnInheritedWidgetOfExactType<VideoListItemInheritedWidget>();
+  }
+}
 
 class VideoListItem extends StatelessWidget {
   final int index; // To display seperate color
@@ -10,6 +37,7 @@ class VideoListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final posterPath = VideoListItemInheritedWidget.of(context)?.movieData.posterPath;
     return Stack(
       children: [
         Container(
@@ -40,12 +68,13 @@ class VideoListItem extends StatelessWidget {
                 //right side
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
+                  children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
+                      padding: const EdgeInsets.symmetric(vertical: 10),
                       child: CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            'https://upload.wikimedia.org/wikipedia/commons/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg'),
+                        backgroundImage: posterPath == null
+                            ? null
+                            : NetworkImage('$imageAppendUrl$posterPath'),
                         radius: 30,
                       ),
                     ),
