@@ -4,6 +4,7 @@ part of 'fast_laugh_bloc.dart';
 class FastLaughState with _$FastLaughState {
   const factory FastLaughState({
     required List<Downloads> videoList,
+    //required List<int> likedVideosIds,
     required bool isLoading,
     required bool isError,
   }) = _Initial;
@@ -14,6 +15,7 @@ class FastLaughState with _$FastLaughState {
       videoList: [],
       isLoading: true,
       isError: false,
+      //likedVideosIds:  [],
     );
   }
 }

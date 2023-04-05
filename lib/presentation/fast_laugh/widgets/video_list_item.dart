@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflix/application/fast_laugh/fast_laugh_bloc.dart';
 import 'package:netflix/core/colors.dart';
 import 'package:netflix/core/constants.dart';
@@ -90,29 +91,63 @@ class VideoListItem extends StatelessWidget {
                         radius: 30,
                       ),
                     ),
-                    VideoActionIcon(
-                      icon: Icons.emoji_emotions,
-                      title: 'LOL',
+                    //Like
+                    ValueListenableBuilder(
+                      valueListenable: likedVideosIdsNotifier,
+                      builder: (BuildContext c, Set<int> newLikedListIds,
+                          Widget? _) {
+                        //
+                        final _index = index;
+                        if (newLikedListIds.contains(_index)) {
+                          return InkWell(
+                            onTap: () {
+                              //BlocProvider.of<FastLaughBloc>(context).add(UnlikeVideo(id: _index));
+                              likedVideosIdsNotifier.value.remove(_index);
+                              likedVideosIdsNotifier.notifyListeners();
+                            },
+                            child: const VideoActionIcon(
+                              icon: Icons.favorite_outline,
+                              title: 'Liked',
+                            ),
+                          );
+                        } else {
+                           return InkWell(
+                          onTap: () {
+                            //BlocProvider.of<FastLaughBloc>(context).add(LikeVideo(id: _index));
+                            likedVideosIdsNotifier.value.add(_index);
+                            likedVideosIdsNotifier.notifyListeners();
+                          },
+                          child: const VideoActionIcon(
+                            icon: Icons.emoji_emotions,
+                            title: 'UnLiked',
+                          ),
+                        );
+                        }
+                       
+                      },
                     ),
-                    VideoActionIcon(
+                    const VideoActionIcon(
                       icon: Icons.add,
                       title: 'My List',
                     ),
                     InkWell(
-                      onTap:  () {
+                      onTap: () {
                         log('Share Clicked!');
-                        final movieName = VideoListItemInheritedWidget.of(context)?.movieData.posterPath;
+                        final movieName =
+                            VideoListItemInheritedWidget.of(context)
+                                ?.movieData
+                                .posterPath;
                         log(movieName.toString());
                         if (movieName != null) {
                           Share.share(movieName);
                         }
                       },
-                      child: VideoActionIcon(
+                      child: const VideoActionIcon(
                         icon: Icons.share,
                         title: 'Share',
                       ),
                     ),
-                    VideoActionIcon(
+                    const VideoActionIcon(
                       icon: Icons.play_arrow,
                       title: 'Play',
                     ),

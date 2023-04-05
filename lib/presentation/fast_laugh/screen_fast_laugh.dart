@@ -19,28 +19,38 @@ class ScreenFastLaugh extends StatelessWidget {
             //!Checking when we're calling APIs
             if (state.isLoading) {
               //!If Data is not fetching From APIs
-              return const Center(child:  CircularProgressIndicator(),);
-            } else if(state.isError) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state.isError) {
               //! If the error comed
-              return const ScaffoldMessenger(child: SnackBar(content: Text('Internet Connection Filed!'),),);
-            } else if(state.videoList.isEmpty) {
-
+              return const ScaffoldMessenger(
+                child: SnackBar(
+                  content: Text('Internet Connection Filed!'),
+                ),
+              );
+            } else if (state.videoList.isEmpty) {
               //! If the videos are not there
-              return const ScaffoldMessenger(child: SnackBar(content: Text('Videos are not there!'),),);
-            
+              return const ScaffoldMessenger(
+                child: SnackBar(
+                  content: Text('Videos are not there!'),
+                ),
+              );
             } else {
               //!Success Data
               return PageView(
-              scrollDirection: Axis.vertical,
-              children: List.generate(
-                state.videoList.length,
-                (index) {
-                  return VideoListItemInheritedWidget(widget: VideoListItem(key: Key(index.toString()) ,index: index), movieData: state.videoList[index]);
-                },
-              ),
-            );
+                scrollDirection: Axis.vertical,
+                children: List.generate(
+                  state.videoList.length,
+                  (index) {
+                    return VideoListItemInheritedWidget(
+                        widget: VideoListItem(
+                            key: Key(index.toString()), index: index),
+                        movieData: state.videoList[index]);
+                  },
+                ),
+              );
             }
-            
           },
         ),
       ),
