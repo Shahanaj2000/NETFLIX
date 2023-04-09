@@ -14,7 +14,7 @@ class SearchImplementation implements SerchServices {
   Future<Either<MainFailure, SearchResp>> searchMovies(
       {required String movieQuery}) async {
     try {
-      final  response = await Dio(BaseOptions()).get(
+      final response = await Dio(BaseOptions()).get(
         ApiEndPoints.search,
         queryParameters: {'query': movieQuery},
       ); //-> Url (Apicall)

@@ -28,23 +28,20 @@ class FastLaughBloc extends Bloc<FastLaughEvent, FastLaughState> {
   ) : super(FastLaughState.initial()) {
     on<Initialize>((event, emit) async {
       //! sending loading to UI
-      emit(
-        const FastLaughState(
-            videoList: [],
-            isLoading: true,
-            isError: false,
-            //likedVideosIds: []
-          )
-      );
+      emit(const FastLaughState(
+        videoList: [],
+        isLoading: true,
+        isError: false,
+        //likedVideosIds: []
+      ));
       //!  get trending movies
       final _result = await _downloadsServices.getDownloadImages();
       final _state = _result.fold(
         (l) {
-          return const  FastLaughState(
+          return const FastLaughState(
             videoList: [],
             isLoading: false,
             isError: true,
-            
           );
         },
         (resp) {
@@ -52,7 +49,6 @@ class FastLaughBloc extends Bloc<FastLaughEvent, FastLaughState> {
             videoList: resp,
             isLoading: false,
             isError: false,
-            
           );
         },
       );
@@ -62,17 +58,15 @@ class FastLaughBloc extends Bloc<FastLaughEvent, FastLaughState> {
     });
 
     //!LikeVideo
-    on<LikeVideo>((event, emit) async{
+    on<LikeVideo>((event, emit) async {
       likedVideosIdsNotifier.value.add(event.id);
       likedVideosIdsNotifier.notifyListeners();
-      
-      
     });
 
     //!UnLikeVideo
-    on<UnlikeVideo>((event, emit) async{
-       likedVideosIdsNotifier.value.remove(event.id);
-       likedVideosIdsNotifier.notifyListeners();
+    on<UnlikeVideo>((event, emit) async {
+      likedVideosIdsNotifier.value.remove(event.id);
+      likedVideosIdsNotifier.notifyListeners();
     });
   }
 }

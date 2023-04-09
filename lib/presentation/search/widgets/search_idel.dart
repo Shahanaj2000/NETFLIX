@@ -6,8 +6,6 @@ import 'package:netflix/presentation/search/widgets/title.dart';
 
 import '../../../core/colors.dart';
 
-
-
 class SearchIdle extends StatelessWidget {
   const SearchIdle({super.key});
 
@@ -26,20 +24,26 @@ class SearchIdle extends StatelessWidget {
         Expanded(
           child: BlocBuilder<SearchBloc, SearchState>(
             builder: (context, state) {
-              if(state.isLoading) {
-                return const Center(child: CircularProgressIndicator(),);
-              }
-              else if(state.isError) {
-                return const Center(child: Text("Error while getting data"),);
-              }
-              else if(state.idle.isEmpty) {
-                return const Center(child: Text("List is empty"),);
+              if (state.isLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (state.isError) {
+                return const Center(
+                  child: Text("Error while getting data"),
+                );
+              } else if (state.idle.isEmpty) {
+                return const Center(
+                  child: Text("List is empty"),
+                );
               }
               return ListView.separated(
                 shrinkWrap: true,
                 itemBuilder: (ctx, index) {
                   final movie = state.idle[index];
-                  return TopSearcheItemTile(title: movie.title??'Not title provider', imageUrl: '$imageAppendUrl${movie.posterPath}');
+                  return TopSearcheItemTile(
+                      title: movie.title ?? 'Not title provider',
+                      imageUrl: '$imageAppendUrl${movie.posterPath}');
                 },
                 separatorBuilder: (ctx, index) => kLVSHeight,
                 itemCount: state.idle.length,
@@ -55,7 +59,8 @@ class SearchIdle extends StatelessWidget {
 class TopSearcheItemTile extends StatelessWidget {
   final String title;
   final String imageUrl;
-  const TopSearcheItemTile({super.key, required this.title, required this.imageUrl});
+  const TopSearcheItemTile(
+      {super.key, required this.title, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +72,7 @@ class TopSearcheItemTile extends StatelessWidget {
         Container(
           width: screenWidth * 0.35,
           height: 68,
-          decoration:  BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.cover,
               image: NetworkImage(imageUrl),
@@ -76,7 +81,7 @@ class TopSearcheItemTile extends StatelessWidget {
         ),
         kLVSWidth,
         //!
-         Expanded(
+        Expanded(
           child: Text(
             title,
             style: const TextStyle(

@@ -111,19 +111,18 @@ class VideoListItem extends StatelessWidget {
                             ),
                           );
                         } else {
-                           return InkWell(
-                          onTap: () {
-                            //BlocProvider.of<FastLaughBloc>(context).add(LikeVideo(id: _index));
-                            likedVideosIdsNotifier.value.add(_index);
-                            likedVideosIdsNotifier.notifyListeners();
-                          },
-                          child: const VideoActionIcon(
-                            icon: Icons.emoji_emotions,
-                            title: 'UnLiked',
-                          ),
-                        );
+                          return InkWell(
+                            onTap: () {
+                              //BlocProvider.of<FastLaughBloc>(context).add(LikeVideo(id: _index));
+                              likedVideosIdsNotifier.value.add(_index);
+                              likedVideosIdsNotifier.notifyListeners();
+                            },
+                            child: const VideoActionIcon(
+                              icon: Icons.emoji_emotions,
+                              title: 'UnLiked',
+                            ),
+                          );
                         }
-                       
                       },
                     ),
                     const VideoActionIcon(

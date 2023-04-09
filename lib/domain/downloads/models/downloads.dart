@@ -6,12 +6,8 @@ part 'downloads.g.dart';
 class Downloads with _$Downloads {
   const factory Downloads({
     //! API name poster_path we want to chage that
-    @JsonKey(name: 'poster_path') 
-    required String? posterPath,
-
-
-    @JsonKey(name: 'title') 
-    required String? title,
+    @JsonKey(name: 'poster_path') required String? posterPath,
+    @JsonKey(name: 'title') required String? title,
   }) = _Downloads;
 
   factory Downloads.fromJson(Map<String, dynamic> json) =>

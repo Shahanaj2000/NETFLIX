@@ -42,8 +42,6 @@ class ScreenDownloads extends StatelessWidget {
 class Section2 extends StatelessWidget {
   const Section2({super.key});
 
-  
-
   @override
   Widget build(BuildContext context) {
     //! API calling

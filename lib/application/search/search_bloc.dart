@@ -7,9 +7,6 @@ import 'package:netflix/domain/downloads/models/downloads.dart';
 import 'package:netflix/domain/search/model/search_resp/search_resp.dart';
 import 'package:netflix/domain/search/search_service.dart';
 
-
-
-
 part 'search_event.dart';
 part 'search_state.dart';
 part 'search_bloc.freezed.dart';
@@ -19,7 +16,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   //! Access the obj
   final IDownloadsRepo _downloadsSevices;
   final SerchServices _serchServices;
-  
+
   //var moieQuery;
 
   SearchBloc(
@@ -86,7 +83,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         ),
       );
       // ignore: no_leading_underscores_for_local_identifiers
-      final _result = await _serchServices.searchMovies(movieQuery: 'moveQuery');
+      final _result =
+          await _serchServices.searchMovies(movieQuery: 'moveQuery');
       final _state = _result.fold(
         (MainFailure f) {
           return const SearchState(
@@ -108,8 +106,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       //! show to UI
       emit(_state);
     });
-    
   }
 
   //get moveQuery => null;
-} 
+}

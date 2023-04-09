@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix/application/hotAndNew/hot_and_new_bloc.dart';
 import 'package:netflix/core/colors.dart';
 import 'package:netflix/core/constants.dart';
 import 'package:netflix/presentation/home/widgets/custom_button_widget.dart';
@@ -55,10 +57,10 @@ class ScreenNewAndHot extends StatelessWidget {
             ),
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
-            _buildComingSoon(),
-            _buildEveryonesWatching(),
+            ComingSoonList(key: Key('coming_soon'),)
+            // _buildEveryonesWatching(),
           ],
         ),
       ),
@@ -66,28 +68,77 @@ class ScreenNewAndHot extends StatelessWidget {
   }
 
   //! ComingSoon Widget
-  Widget _buildComingSoon() {
-    return ListView.separated(
-      itemBuilder: (BuildContext context, index) {
-        return const ComingSoonWidget();
-      },
-      separatorBuilder: (BuildContext context, int index) {
-        return kHeight;
-      },
-      itemCount: 10,
-    );
-  }
+  // Widget _buildComingSoon() {
+  //   return ListView.separated(
+  //     itemBuilder: (BuildContext context, index) {
+  //       // return const ComingSoonWidget();
+  //     },
+  //     separatorBuilder: (BuildContext context, int index) {
+  //       return kHeight;
+  //     },
+  //     itemCount: 10,
+  //   );
+  // }
 
   //! Everyone's Watching
-  Widget _buildEveryonesWatching() {
-    return ListView.separated(
-      itemBuilder: (context, index) {
-        return const EveryonesWatching();
+  // Widget _buildEveryonesWatching() {
+  //   return ListView.separated(
+  //     itemBuilder: (context, index) {
+  //       //return const EveryonesWatching();
+  //     },
+  //     separatorBuilder: (context, index) {
+  //       return kHeight;
+  //     },
+  //     itemCount: 10,
+  //   );
+  // }
+}
+
+class ComingSoonList extends StatelessWidget {
+  const ComingSoonList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<HotAndNewBloc, HotAndNewState>(
+      builder: (context, state) {
+        if (state.isLoading) {
+          return const Center(
+            child: CircularProgressIndicator(
+              strokeWidth: 2,
+            ),
+          );
+        } else if (state.isError) {
+          return const Center(
+            child: Text('Error while loading comingSoon list'),
+          );
+        } else if (state.comingSoonList.isEmpty) {
+          return const Center(
+            child: Text('comingSoon list is empty'),
+          );
+        } else {
+          return ListView.separated(
+            itemBuilder: (context, index) {
+              final movie = state.comingSoonList[index];
+
+              if (movie.id == null) {
+                return const SizedBox();
+              }
+              return ComingSoonWidget(
+                id: movie.id.toString(),
+                month: 'JAN',
+                day: '10',
+                posterPath: '$imageAppendUrl${movie.posterPath}',
+                movieName: movie.originalTitle ?? 'No title',
+                description: movie.overview ?? 'No description',
+              );
+            },
+            separatorBuilder: (context, index) {
+              return kHeight;
+            },
+            itemCount: state.comingSoonList.length,
+          );
+        }
       },
-      separatorBuilder: (context, index) {
-        return kHeight;
-      },
-      itemCount: 10,
     );
   }
 }

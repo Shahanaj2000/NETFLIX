@@ -11,18 +11,13 @@ class DownloadState with _$DownloadState {
 
   //!Inital State
   factory DownloadState.inital() {
-    
     return const DownloadState(
       isLoading: false,
       downloadsFailuresOrSuccessOption: None(),
       downloads: [],
     );
-    
   }
   // void addToList() async {
   //     final resp = await Dio.getDownloadImages(apiKey);
   //   }
-  
 }
-
-

@@ -8,4 +8,12 @@ class ApiEndPoints {
 
   //! Search Page
   static const search = "$kBaseUrl/search/movie?api_key=$apiKey";
+
+  //! Hot&New Page -> Movie
+  static const hotAndNewMovie = "$kBaseUrl/discover/movie?api_key=$apiKey";
+
+  //! Hot&New Page -> Tv
+  static const hotAndNewTv = "$kBaseUrl/discover/tv?api_key=$apiKey";
+
+
 }

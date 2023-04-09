@@ -41,7 +41,7 @@ class ScreenSearch extends StatelessWidget {
               ),
               kGVCHeight,
 
-               Expanded(
+              Expanded(
                 child: BlocBuilder<SearchBloc, SearchState>(
                   builder: (context, state) {
                     //!
@@ -50,7 +50,6 @@ class ScreenSearch extends StatelessWidget {
                     } else {
                       return const SearchResultWidget();
                     }
-                    
                   },
                 ),
               ),

@@ -11,7 +11,7 @@ class FastLaughState with _$FastLaughState {
 
   //! Initial State
   factory FastLaughState.initial() {
-    return const  FastLaughState(
+    return const FastLaughState(
       videoList: [],
       isLoading: true,
       isError: false,
