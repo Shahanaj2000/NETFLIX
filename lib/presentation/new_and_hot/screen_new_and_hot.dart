@@ -7,6 +7,7 @@ import 'package:netflix/presentation/home/widgets/custom_button_widget.dart';
 import 'package:netflix/presentation/new_and_hot/widgets/coming_soon_widget.dart';
 import 'package:netflix/presentation/new_and_hot/widgets/everyones_watching.dart';
 import 'package:netflix/presentation/widgets/video_widget.dart';
+import 'package:intl/intl.dart';
 
 class ScreenNewAndHot extends StatelessWidget {
   const ScreenNewAndHot({super.key});
@@ -57,10 +58,11 @@ class ScreenNewAndHot extends StatelessWidget {
             ),
           ),
         ),
-        body: const TabBarView(
+        body:  TabBarView(
           children: [
-            ComingSoonList(key: Key('coming_soon'),)
-            // _buildEveryonesWatching(),
+            const  ComingSoonList(key: Key('coming_soon'),),
+            
+             _buildEveryonesWatching(),
           ],
         ),
       ),
@@ -81,17 +83,17 @@ class ScreenNewAndHot extends StatelessWidget {
   // }
 
   //! Everyone's Watching
-  // Widget _buildEveryonesWatching() {
-  //   return ListView.separated(
-  //     itemBuilder: (context, index) {
-  //       //return const EveryonesWatching();
-  //     },
-  //     separatorBuilder: (context, index) {
-  //       return kHeight;
-  //     },
-  //     itemCount: 10,
-  //   );
-  // }
+  Widget _buildEveryonesWatching() {
+    return ListView.separated(
+      itemBuilder: (context, index) {
+        //return const EveryonesWatching();
+      },
+      separatorBuilder: (context, index) {
+        return kHeight;
+      },
+      itemCount: 10,
+    );
+  }
 }
 
 class ComingSoonList extends StatelessWidget {
@@ -99,6 +101,9 @@ class ComingSoonList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<HotAndNewBloc>(context).add(const LoadDataInComingSoon());
+    },);
     return BlocBuilder<HotAndNewBloc, HotAndNewState>(
       builder: (context, state) {
         if (state.isLoading) {
@@ -123,10 +128,26 @@ class ComingSoonList extends StatelessWidget {
               if (movie.id == null) {
                 return const SizedBox();
               }
+              print(movie.releaseDate.toString());
+              String month = '';
+              String date  = '';
+              try {
+                final _date = DateTime.tryParse(movie.releaseDate!);
+                final formatedDate =  DateFormat.yMMMMd('en_US').format(_date!);
+                print(formatedDate.toString());
+                month = formatedDate.split(' ').first.substring(0, 3).toUpperCase();
+                date = movie.releaseDate!.split('-')[1];
+              } catch (_) {
+                month = ''; 
+                date = '';
+              }
+              
+              
+              
               return ComingSoonWidget(
                 id: movie.id.toString(),
-                month: 'JAN',
-                day: '10',
+                month: month,
+                day: date,
                 posterPath: '$imageAppendUrl${movie.posterPath}',
                 movieName: movie.originalTitle ?? 'No title',
                 description: movie.overview ?? 'No description',

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:netflix/core/constants.dart';
 
 class VideoWidget extends StatelessWidget {
+  final String url;
   const VideoWidget({
+    required this.url,
     super.key,
   });
 
@@ -14,7 +16,7 @@ class VideoWidget extends StatelessWidget {
           width: double.infinity,
           height: 200,
           child: Image.network(
-            newAndHotTempImage,
+            url,
             fit: BoxFit.cover,
           ),
         ),

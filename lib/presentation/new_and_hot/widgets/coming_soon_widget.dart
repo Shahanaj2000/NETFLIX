@@ -34,17 +34,17 @@ class ComingSoonWidget extends StatelessWidget {
           height: 450,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
+            children: [
               Text(
-                "FEB",
-                style: TextStyle(
+                month,
+                style: const TextStyle(
                   fontSize: 16,
                   color: kGreyColor,
                 ),
               ),
               Text(
-                "11",
-                style: TextStyle(
+                day,
+                style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 4),
@@ -59,15 +59,22 @@ class ComingSoonWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const VideoWidget(),
+               VideoWidget(url: posterPath,),
               kGVCHeight,
               //!
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "The Ritual Killer",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  Expanded(
+                    child: Text(
+                      movieName,
+                      //maxLines: 1,
+                     // overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                   //Spacer(),
                   Row(
@@ -91,22 +98,24 @@ class ComingSoonWidget extends StatelessWidget {
                 ],
               ),
               kHeight,
-              const Text("Coming On Friday"),
+              Text("Coming On $day $month"),
               kHPHeight,
-              const Text(
-                "The Ritual Killer 2",
-                style: TextStyle(
+              Text(
+                movieName,
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               kHeight,
-              const Text(
-                "A detective on the verge of retirement teams with a professor of African Studies to track down a serial killer who is performing the ancient black magic practice of Muti.",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w200,
-                  color: kGreyColor,
+              Expanded(
+                child: Text(
+                  description,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w200,
+                    color: kGreyColor,
+                  ),
                 ),
               ),
               kHeight,

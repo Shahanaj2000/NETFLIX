@@ -41,7 +41,7 @@ class EveryonesWatching extends StatelessWidget {
             ),
           ),
           kNewHot,
-          const VideoWidget(),
+           const  VideoWidget(url: newAndHotTempImage,),
           kHPHeight,
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
