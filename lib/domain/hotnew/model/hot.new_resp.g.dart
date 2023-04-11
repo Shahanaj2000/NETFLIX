@@ -30,7 +30,7 @@ HotNewData _$HotNewDataFromJson(Map<String, dynamic> json) => HotNewData(
       overview: json['overview'] as String?,
       posterPath: json['poster_path'] as String?,
       releaseDate: json['release_date'] as String?,
-    );
+    )..originalName = json['original_name'] as String?;
 
 Map<String, dynamic> _$HotNewDataToJson(HotNewData instance) =>
     <String, dynamic>{
@@ -39,6 +39,7 @@ Map<String, dynamic> _$HotNewDataToJson(HotNewData instance) =>
       'title': instance.title,
       'original_language': instance.originalLanguage,
       'original_title': instance.originalTitle,
+      'original_name': instance.originalName,
       'overview': instance.overview,
       'poster_path': instance.posterPath,
       'release_date': instance.releaseDate,

@@ -111,6 +111,7 @@ class ComingSoonWidget extends StatelessWidget {
               Expanded(
                 child: Text(
                   description,
+                 
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w200,

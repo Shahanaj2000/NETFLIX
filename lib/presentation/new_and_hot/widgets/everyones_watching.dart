@@ -24,24 +24,26 @@ class EveryonesWatching extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           kHeight,
-          const Text(
-            "Friends",
-            style: TextStyle(
+           Text(
+            movieName,
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
           kHeight,
-          const Text(
-            "A detective on the verge of retirement teams with a professor of African Studies to track down a serial killer who is performing the ancient black magic practice of Muti.",
-            style: TextStyle(
+           Text(
+            description,
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w200,
               color: kGreyColor,
             ),
           ),
           kNewHot,
-           const  VideoWidget(url: newAndHotTempImage,),
+             VideoWidget(url: posterPath,),
           kHPHeight,
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
