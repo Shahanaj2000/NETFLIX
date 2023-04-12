@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix/application/home/home_bloc.dart';
 import 'package:netflix/core/colors.dart';
 
 import 'package:netflix/core/constants.dart';
@@ -17,6 +19,9 @@ class ScreenHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<HomeBloc>(context).add(const GetHomeScreenData());
+    });
     return Scaffold(
       body: ValueListenableBuilder(
         valueListenable: scrollNotifier,
@@ -36,29 +41,82 @@ class ScreenHome extends StatelessWidget {
             },
             child: Stack(
               children: [
-                ListView(
-                  children: const [
-                    BackgroundCard(),
-                    kHeight,
-                    MainTitleCard(
-                      title: 'Release in the past year',
-                    ),
-                    kHPHeight,
-                    MainTitleCard(
-                      title: 'Trending Now',
-                    ),
-                    kHPHeight,
-                    NumberTitleCard(),
-                    kHPHeight,
-                    MainTitleCard(
-                      title: 'Tense Drams',
-                    ),
-                    kHPHeight,
-                    MainTitleCard(
-                      title: 'South Indian Cinema',
-                    ),
-                    kHPHeight,
-                  ],
+                BlocBuilder<HomeBloc, HomeState>(
+                  builder: (context, state) {
+                    if (state.isLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                        ),
+                      );
+                    } else if (state.isError) {
+                      return const Center(
+                        child: Text(
+                          "Error while getting data",
+                          style: TextStyle(color: kWhiteColor),
+                        ),
+                      );
+                    } else {
+                      //releasePastYear
+                      final  _releasePastYear =
+                          state.pastYearMovieList.map((m) {
+                        return '$imageAppendUrl${m.posterPath}';
+                      }).toList();
+                      _releasePastYear.shuffle();
+
+                      //trending
+                      final _trending = state.trendingMovieList.map((m) {
+                        return '$imageAppendUrl${m.posterPath}';
+                      }).toList();
+                      _trending.shuffle();
+
+                      //tenseDramas
+                      
+                      final _tenseDramas = state.tenseDramasMovieList.map((m) {
+                        return '$imageAppendUrl${m.posterPath}';
+                      }).toList();
+                      _tenseDramas.shuffle();
+
+
+                      //southIndian
+                      
+                      final _southIndian = state.southIndianMovieList.map((m) {
+                        return '$imageAppendUrl${m.posterPath}';
+                      }).toList();
+                      _southIndian.shuffle();
+
+
+                      return ListView(
+                        children: [
+                          const BackgroundCard(),
+                          kHeight,
+                          MainTitleCard(
+                            title: 'Release in the past year',
+                            posterList: _releasePastYear.sublist(0, 10),
+                            
+                          ),
+                          kHPHeight,
+                          MainTitleCard(
+                            title: 'Trending Now',
+                            posterList: _trending.sublist(0, 10),
+                          ),
+                          kHPHeight,
+                          NumberTitleCard(),
+                          kHPHeight,
+                          MainTitleCard(
+                            title: 'Tense Drams',
+                            posterList: _tenseDramas.sublist(0,10),
+                          ),
+                          kHPHeight,
+                          MainTitleCard(
+                            title: 'South Indian Cinema',
+                            posterList: _southIndian.sublist(0,10),
+                          ),
+                          kHPHeight,
+                        ],
+                      );
+                    }
+                  },
                 ),
                 //! Hide part
                 scrollNotifier.value == true

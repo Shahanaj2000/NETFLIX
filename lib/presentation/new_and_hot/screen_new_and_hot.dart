@@ -85,62 +85,68 @@ class ComingSoonList extends StatelessWidget {
             .add(const LoadDataInComingSoon());
       },
     );
-    return BlocBuilder<HotAndNewBloc, HotAndNewState>(
-      builder: (context, state) {
-        if (state.isLoading) {
-          return const Center(
-            child: CircularProgressIndicator(
-              strokeWidth: 2,
-            ),
-          );
-        } else if (state.isError) {
-          return const Center(
-            child: Text('Error while loading comingSoon list'),
-          );
-        } else if (state.comingSoonList.isEmpty) {
-          return const Center(
-            child: Text('comingSoon list is empty'),
-          );
-        } else {
-          return ListView.separated(
-            padding: const EdgeInsets.only(top:20),
-            itemBuilder: (context, index) {
-              final movie = state.comingSoonList[index];
-
-              if (movie.id == null) {
-                return const SizedBox();
-              }
-              print(movie.releaseDate.toString());
-              String month = '';
-              String date = '';
-              try {
-                final _date = DateTime.tryParse(movie.releaseDate!);
-                final formatedDate = DateFormat.yMMMMd('en_US').format(_date!);
-                print(formatedDate.toString());
-                month =
-                    formatedDate.split(' ').first.substring(0, 3).toUpperCase();
-                date = movie.releaseDate!.split('-')[1];
-              } catch (_) {
-                month = '';
-                date = '';
-              }
-
-              return ComingSoonWidget(
-                id: movie.id.toString(),
-                month: month,
-                day: date,
-                posterPath: '$imageAppendUrl${movie.posterPath}',
-                movieName: movie.originalTitle ?? 'No title',
-                description: movie.overview ?? 'No description',
-              );
-            },
-            separatorBuilder: (context, index) {
-              return kHeight;
-            },
-            itemCount: state.comingSoonList.length,
-          );
-        }
+    return RefreshIndicator(
+      onRefresh: () async {
+        BlocProvider.of<HotAndNewBloc>(context)
+            .add(const LoadDataInComingSoon());
       },
+      child: BlocBuilder<HotAndNewBloc, HotAndNewState>(
+        builder: (context, state) {
+          if (state.isLoading) {
+            return const Center(
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+              ),
+            );
+          } else if (state.isError) {
+            return const Center(
+              child: Text('Error while loading comingSoon list'),
+            );
+          } else if (state.comingSoonList.isEmpty) {
+            return const Center(
+              child: Text('comingSoon list is empty'),
+            );
+          } else {
+            return ListView.separated(
+              padding: const EdgeInsets.only(top:20),
+              itemBuilder: (context, index) {
+                final movie = state.comingSoonList[index];
+    
+                if (movie.id == null) {
+                  return const SizedBox();
+                }
+                print(movie.releaseDate.toString());
+                String month = '';
+                String date = '';
+                try {
+                  final _date = DateTime.tryParse(movie.releaseDate!);
+                  final formatedDate = DateFormat.yMMMMd('en_US').format(_date!);
+                  print(formatedDate.toString());
+                  month =
+                      formatedDate.split(' ').first.substring(0, 3).toUpperCase();
+                  date = movie.releaseDate!.split('-')[1];
+                } catch (_) {
+                  month = '';
+                  date = '';
+                }
+    
+                return ComingSoonWidget(
+                  id: movie.id.toString(),
+                  month: month,
+                  day: date,
+                  posterPath: '$imageAppendUrl${movie.posterPath}',
+                  movieName: movie.originalTitle ?? 'No title',
+                  description: movie.overview ?? 'No description',
+                );
+              },
+              separatorBuilder: (context, index) {
+                return kHeight;
+              },
+              itemCount: state.comingSoonList.length,
+            );
+          }
+        },
+      ),
     );
   }
 }
@@ -157,46 +163,52 @@ class EveryonesWatchingList extends StatelessWidget {
             .add(const LoadDataInEveryOnesWayching());
       },
     );
-    return BlocBuilder<HotAndNewBloc, HotAndNewState>(
-      builder: (context, state) {
-        if (state.isLoading) {
-          return const Center(
-            child: CircularProgressIndicator(
-              strokeWidth: 2,
-            ),
-          );
-        } else if (state.isError) {
-          return const Center(
-            child: Text('Error while loading comingSoon list'),
-          );
-        } else if (state.everyOnesWatchingList.isEmpty) {
-          return const Center(
-            child: Text('comingSoon list is empty'),
-          );
-        } else {
-          return ListView.separated(
-            padding: const EdgeInsets.all(20),
-            itemBuilder: (context, index) {
-              final tv = state.everyOnesWatchingList[index];
-
-              if (tv.id == null) {
-                return const SizedBox();
-              }
-              
-
-              return EveryonesWatching(
-                posterPath: '$imageAppendUrl${tv.posterPath}',
-                movieName: tv.originalName ?? 'No name provided',
-                description: tv.overview ?? 'No description',
-              );
-            },
-            separatorBuilder: (context, index) {
-              return kHeight;
-            },
-            itemCount: state.everyOnesWatchingList.length,
-          );
-        }
+    return RefreshIndicator( //Refresh UI
+      onRefresh: () async{
+         BlocProvider.of<HotAndNewBloc>(context)
+            .add(const LoadDataInEveryOnesWayching());
       },
+      child: BlocBuilder<HotAndNewBloc, HotAndNewState>(
+        builder: (context, state) {
+          if (state.isLoading) {
+            return const Center(
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+              ),
+            );
+          } else if (state.isError) {
+            return const Center(
+              child: Text('Error while loading comingSoon list'),
+            );
+          } else if (state.everyOnesWatchingList.isEmpty) {
+            return const Center(
+              child: Text('comingSoon list is empty'),
+            );
+          } else {
+            return ListView.separated(
+              padding: const EdgeInsets.all(20),
+              itemBuilder: (context, index) {
+                final tv = state.everyOnesWatchingList[index];
+    
+                if (tv.id == null) {
+                  return const SizedBox();
+                }
+                
+    
+                return EveryonesWatching(
+                  posterPath: '$imageAppendUrl${tv.posterPath}',
+                  movieName: tv.originalName ?? 'No name provided',
+                  description: tv.overview ?? 'No description',
+                );
+              },
+              separatorBuilder: (context, index) {
+                return kHeight;
+              },
+              itemCount: state.everyOnesWatchingList.length,
+            );
+          }
+        },
+      ),
     );
   }
 }
