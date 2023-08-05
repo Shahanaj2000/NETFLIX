@@ -41,13 +41,12 @@ class MainCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration:  BoxDecoration(
-        image: const DecorationImage(
-          image: NetworkImage(imageUrl),
-          fit: BoxFit.cover,
-        ),
-        borderRadius: BorderRadius.circular(8)
-      ),
+      decoration: BoxDecoration(
+          image: const DecorationImage(
+            image: NetworkImage(imageUrl),
+            fit: BoxFit.cover,
+          ),
+          borderRadius: BorderRadius.circular(8)),
     );
   }
 }

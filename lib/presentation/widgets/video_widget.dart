@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:netflix/core/constants.dart';
 
 class VideoWidget extends StatelessWidget {
+  final String url;
   const VideoWidget({
+    required this.url,
     super.key,
   });
 
@@ -14,8 +16,20 @@ class VideoWidget extends StatelessWidget {
           width: double.infinity,
           height: 200,
           child: Image.network(
-            newAndHotTempImage,
+            url,
             fit: BoxFit.cover,
+            loadingBuilder: (BuildContext _, Widget child, ImageChunkEvent? progress) {
+              if (progress == null) {
+               return child;
+              } else {
+                 return const Center(child: CircularProgressIndicator(strokeWidth: 2,),);
+              }
+
+            },
+
+            errorBuilder: (BuildContext _, Object a, StackTrace? trace) {
+              return const Center(child: Icon(Icons.wifi, color: Colors.white,), );
+            },
           ),
         ),
         //! MuteIcon
