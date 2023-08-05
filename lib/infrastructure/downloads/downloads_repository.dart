@@ -20,24 +20,24 @@ class DownloadsRepository implements IDownloadsRepo {
           .get(ApiEndPoints.downloads); //-> Url (Apicall)
       //checking statusCode
       if (response.statusCode == 200 || response.statusCode == 201) {
-        //print("Response: ");
-        //print(response.data);
-        final downloadList = (response.data['results'] as List).map((e) {
-          return Downloads.fromJson(e as Map<String, dynamic>);
-        }).toList();
 
-        print('DownLoadList: ');
-        log(downloadList.toString());
 
-        return Right(downloadList);
+        log(response.data);
+        final List<Downloads> downloadList = [];
+        // log(response.data);
+        // for(final raw in response.data) {
+        //   downloadList.add(Downloads.fromJson(raw as Map<String, dynamic>));
+        // }
+        // log(downloadList.toString());
+         return Right(downloadList);
       } else {
-        return const Left(MainFailure
-            .serverFailure()); //Left -> MainFailure (sever / client )
+         return const Left(MainFailure.serverFailure()); //Left -> MainFailure (sever / client )
       }
     } catch (e) {
       log(e.toString());
-      return const Left(
-          MainFailure.clientFailure()); //Internet failure or any ....
+      return const Left(MainFailure.clientFailure()); //Internet failure or any ....
     }
   }
 }
+
+
