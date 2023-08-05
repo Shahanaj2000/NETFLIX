@@ -6,15 +6,13 @@ class CustomIconWidget extends StatelessWidget {
   final String title;
   final double iconSize;
   final double iconText;
-  
+
   const CustomIconWidget({
     super.key,
-    required this.icon, 
+    required this.icon,
     required this.title,
     this.iconSize = 30,
     this.iconText = 18,
-    
-    
   });
 
   @override
@@ -28,7 +26,7 @@ class CustomIconWidget extends StatelessWidget {
         ),
         Text(
           title,
-          style:  TextStyle(fontSize: iconText, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: iconText, fontWeight: FontWeight.bold),
         ),
       ],
     );

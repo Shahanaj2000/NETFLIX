@@ -4,7 +4,8 @@ import 'package:netflix/core/constants.dart';
 import 'package:netflix/presentation/home/widgets/custom_button_widget.dart';
 
 class BackgroundCard extends StatelessWidget {
-  const BackgroundCard({super.key});
+  
+  const BackgroundCard({super.key, });
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +60,6 @@ TextButton _playButton() {
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: Text(
         'Play',
-        
         style: TextStyle(
           color: kBlackColor,
           fontSize: 23,

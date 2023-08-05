@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflix/application/downloads/downloads_bloc.dart';
@@ -13,8 +12,8 @@ class ScreenDownloads extends StatelessWidget {
   //!
   final _widgetList = [
     kHeight,
-    const _smartDownloads(), 
-        Section2(),
+    const _smartDownloads(),
+    const Section2(),
     const Section3(),
   ];
 
@@ -30,7 +29,9 @@ class ScreenDownloads extends StatelessWidget {
       body: ListView.separated(
         padding: const EdgeInsets.all(10),
         itemBuilder: (ctx, index) => _widgetList[index],
-        separatorBuilder: (ctx, index) => const SizedBox(height: 20,),
+        separatorBuilder: (ctx, index) => const SizedBox(
+          height: 20,
+        ),
         itemCount: _widgetList.length,
       ),
     );
@@ -39,21 +40,16 @@ class ScreenDownloads extends StatelessWidget {
 
 //! section2 -> Aim is to use spacing b/w both
 class Section2 extends StatelessWidget {
-  Section2({super.key});
-
-  final List imageList = [
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/kuf6dutpsT0vSVehic3EZIqkOBt.jpg",
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/qi9r5xBgcc9KTxlOLjssEbDgO0J.jpg",
-    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg",
-  ];
+  const Section2({super.key});
 
   @override
   Widget build(BuildContext context) {
     //! API calling
-    // WidgetsBinding.instance.addPostFrameCallback((_) { 
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
     //   BlocProvider.of<DownloadsBloc>(context).add(const DownloadsEvent.getDownloadsImage());
     // });
-    BlocProvider.of<DownloadsBloc>(context).add(const DownloadsEvent.getDownloadsImage());
+    BlocProvider.of<DownloadsBloc>(context)
+        .add(const DownloadsEvent.getDownloadsImage());
     //! MediaQuery
     final Size size = MediaQuery.of(context).size;
     return Column(
@@ -71,7 +67,6 @@ class Section2 extends StatelessWidget {
         kHeight,
         const Text(
           "We will download a personalised selection of\n movies and shows for you, so there's\n always something to watch on your\ndevice.",
-          
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.grey,
@@ -81,39 +76,48 @@ class Section2 extends StatelessWidget {
         kHeight,
 
         //! To show Poster
-        SizedBox(
-          width: size.width,
-          height: size.width,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              CircleAvatar(
-                backgroundColor: Colors.grey.withOpacity(0.5),
-                radius: size.width * 0.4,
-              ),
-              //! To Display images in stack CA
-              DownloadImageWidget(
-                margin: const EdgeInsets.only(left: 130, bottom: 50),
-                imageList: imageList[0],
-                angle: 20,
-                size: Size(size.width * 0.4, size.height * 0.58),
-              ),
+        BlocBuilder<DownloadsBloc, DownloadState>(
+          builder: (context, state) {
+            return SizedBox(
+              width: size.width,
+              height: size.width,
+              child: state.isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Colors.grey.withOpacity(0.5),
+                          radius: size.width * 0.4,
+                        ),
+                        //! To Display images in stack CA
+                        DownloadImageWidget(
+                          margin: const EdgeInsets.only(left: 130, bottom: 50),
+                          imageList:
+                              '$imageAppendUrl${state.downloads[0].posterPath}',
+                          angle: 20,
+                          size: Size(size.width * 0.4, size.height * 0.58),
+                        ),
 
-              DownloadImageWidget(
-                margin: const EdgeInsets.only(right: 130, bottom: 50),
-                imageList: imageList[1],
-                angle: -20,
-                size: Size(size.width * 0.4, size.height * 0.58),
-              ),
+                        DownloadImageWidget(
+                          margin: const EdgeInsets.only(right: 130, bottom: 50),
+                          imageList:
+                              '$imageAppendUrl${state.downloads[1].posterPath}',
+                          angle: -20,
+                          size: Size(size.width * 0.4, size.height * 0.58),
+                        ),
 
-              DownloadImageWidget(
-                margin: const EdgeInsets.only(bottom: 14),
-                imageList: imageList[2],
-                size: Size(size.width * 0.45, size.height * 0.65),
-                radius: 8,
-              ),
-            ],
-          ),
+                        DownloadImageWidget(
+                          margin: const EdgeInsets.only(bottom: 14),
+                          imageList:
+                              '$imageAppendUrl${state.downloads[2].posterPath}',
+                          size: Size(size.width * 0.45, size.height * 0.65),
+                          radius: 8,
+                        ),
+                      ],
+                    ),
+            );
+          },
         ),
       ],
     );
@@ -183,7 +187,11 @@ class _smartDownloads extends StatelessWidget {
         kWidth,
         Text(
           "Smart Downloads",
-          style: TextStyle(color: kWhiteColor, fontSize: 14, fontWeight: FontWeight.bold,),
+          style: TextStyle(
+            color: kWhiteColor,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+          ),
         )
       ],
     );
