@@ -8,8 +8,8 @@ import 'package:netflix/domain/downloads/i_downloads_repo.dart';
 import 'package:netflix/domain/downloads/models/downloads.dart';
 import 'dart:developer';
 
-@LazySingleton(
-    as: IDownloadsRepo) // IDownloadsRepo call -> DownloadsRepo also called
+@LazySingleton(as: IDownloadsRepo) // IDownloadsRepo call -> DownloadsRepo also called
+     
 class DownloadsRepository implements IDownloadsRepo {
   @override
   Future<Either<MainFailure, List<Downloads>>> getDownloadImages() async {
@@ -19,10 +19,13 @@ class DownloadsRepository implements IDownloadsRepo {
           .get(ApiEndPoints.downloads); //-> Url (Apicall)
       //checking statusCode
       if (response.statusCode == 200 || response.statusCode == 201) {
+        //print("Response: ");
+        //print(response.data);
         final downloadList = (response.data['results'] as List).map((e) {
-          return Downloads.fromJson(e);
+          return Downloads.fromJson(e as Map<String, dynamic>);
         }).toList();
 
+        print('DownLoadList: ');
         log(downloadList.toString());
 
         return Right(downloadList);
