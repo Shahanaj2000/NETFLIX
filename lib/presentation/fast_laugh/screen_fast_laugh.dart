@@ -23,6 +23,7 @@ class ScreenFastLaugh extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (state.isError) {
+              //print(state);
               //! If the error comed
               return const ScaffoldMessenger(
                 child: SnackBar(
