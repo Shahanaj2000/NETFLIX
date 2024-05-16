@@ -18,6 +18,7 @@ class DownloadsRepository implements IDownloadsRepo {
     try {
       final Response response = await Dio(BaseOptions())
           .get(ApiEndPoints.downloads); //-> Url (Apicall)
+          //print(response.data);
       //checking statusCode
       if (response.statusCode == 200 || response.statusCode == 201) {
 

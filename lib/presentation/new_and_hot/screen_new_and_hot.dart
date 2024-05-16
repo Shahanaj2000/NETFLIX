@@ -39,6 +39,7 @@ class ScreenNewAndHot extends StatelessWidget {
               kWidth,
             ],
             bottom: TabBar(
+
               padding: const EdgeInsets.only(bottom: 10, top: 7),
               isScrollable: true,
               labelColor: kBlackColor,

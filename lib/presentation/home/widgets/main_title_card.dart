@@ -28,8 +28,10 @@ class MainTitleCard extends StatelessWidget {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: List.generate(
+              
               posterList.length,
               (index) {
+                //print(posterList.length);
                 return  MainCard(imageUrl: posterList[index],);
               },
             ),

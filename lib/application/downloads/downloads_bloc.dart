@@ -9,7 +9,7 @@ import 'package:injectable/injectable.dart';
 import 'package:netflix/domain/core/Failures/main_failure.dart';
 import 'package:netflix/domain/downloads/i_downloads_repo.dart';
 import 'package:netflix/domain/downloads/models/downloads.dart';
-import 'package:netflix/infrastructure/api_key.dart';
+//import 'package:netflix/infrastructure/api_key.dart';
 
 part 'downloads_event.dart';
 part 'downloads_state.dart';

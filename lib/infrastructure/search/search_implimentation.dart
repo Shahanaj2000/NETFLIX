@@ -21,6 +21,7 @@ class SearchImplementation implements SerchServices {
       //log(response.data.toString());
       //checking statusCode
       if (response.statusCode == 200 || response.statusCode == 201) {
+        
         final result = SearchResp.fromJson(response.data);
 
         return Right(result);

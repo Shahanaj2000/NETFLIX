@@ -104,6 +104,7 @@ class ScreenHome extends StatelessWidget {
                               title: 'Release in the past year',
                               posterList: _releasePastYear.sublist(0, 10),
                               
+                              
                             ),
                             kHPHeight,
                             MainTitleCard(

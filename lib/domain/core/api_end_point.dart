@@ -1,6 +1,8 @@
 //! Constant for Url - > TMDB
 import 'package:netflix/core/strings.dart';
-import 'package:netflix/infrastructure/api_key.dart';
+
+import '../../core/api_key.dart';
+
 
 class ApiEndPoints {
   //! Downloads page
